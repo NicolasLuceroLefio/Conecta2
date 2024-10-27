@@ -1,0 +1,50 @@
+<!--página : index.html-->
+{% extends "base.html" %}
+{% load static %}  <!--  cargar la etiqueta static -->
+{% block titulo %} Nosotros {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">
+        
+    </div>  
+    <div class="card-body">
+        <h4 class="card-title">Empresas</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for libro in libros%}
+                <tr>
+                    <td> {{ libro.id}}</td>
+                    <td> {{ libro.nombre}}</td>
+                    <td> 
+                        
+                        <img src="{{ libro.imagen.url}}" height="90"/>
+
+                       
+
+                    </td>
+                    <td> {{ libro.descripcion}}</td>
+                    <td>  <a name="" id="" class= "btn btn-info"   href="{% url 'detalle_libro' libro.id %}"  role="button">Ver</a>
+                    | <a name="" id="" class= "btn btn-danger" href="{% url 'eliminar' libro.id %}" role="button">Borrar</a> </td>
+                </tr> 
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    <div class="card-footer text-muted">
+        
+    </div>
+</div>
+
+{% endblock %}

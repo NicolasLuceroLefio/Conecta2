@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %} Editar Perfil {% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        Editar Perfil
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos de la empresa</h4>
+        <form enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            {% for campo in formulario %}
+            <div class="mb-3">
+                <label for="{{ campo.id_for_label }}" class="form-label">{{ campo.label }}:</label>
+                {% if campo.field.widget.input_type == 'file' and campo.value %}
+                    <img src="{{ campo.value.url }}" width="100" alt="Imagen">
+                {% endif %}
+                {{ campo }}
+                <div class="col-12 help-text">{{ campo.errors }}</div>
+            </div>
+            {% endfor %}
+            <input name="" id="" class="btn btn-success" type="submit" value="Guardar cambios">
+            <a name="" id="" class="btn btn-primary" href="{% url 'nosotros' %}" role="button">Cancelar</a>
+        </form>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+</div>
+{% endblock %}

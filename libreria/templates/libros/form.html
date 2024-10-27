@@ -1,0 +1,26 @@
+<!--Página form.html-->
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% for campo in formulario %}
+
+    <div class="mb-3">
+        <label for="" class="form-label">{{ campo.label }}:</label>
+
+        {% if campo.field.widget.input_type == 'file' and campo.value %}
+            <img src="{{ campo.value.url }}" width="100" alt="Imagen">
+        {% endif %}
+
+        {% if campo.field.widget.input_type == 'file' %}
+            <input type="file" class="form-control" name="{{ campo.name }}" id="{{ campo.id_for_label }}" aria-describedby="helpId">
+        {% else %}
+            <input type="{{ campo.field.widget.input_type }}" class="form-control" name="{{ campo.name }}" id="{{ campo.id_for_label }}" aria-describedby="helpId" placeholder="{{ campo.label }}" value="{{ campo.value | default:'' }}">
+        {% endif %}
+        
+        <div class="col-12 help-text">{{ campo.errors }}</div>
+    </div>
+
+    {% endfor %}
+
+    <input name="" id="" class="btn btn-success" type="submit" value="Enviar información">
+    <a name="" id="" class="btn btn-primary" href="{% url 'nosotros' %}" role="button">Cancelar</a>
+</form>

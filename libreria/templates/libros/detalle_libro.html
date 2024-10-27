@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Detalle del Libro {% endblock %}
+
+{% block contenido %}
+<div class="card">
+    <div class="card-header">
+        Detalles de Empresa
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">{{ libro.nombre }}</h4>
+        <img src="{{ libro.imagen.url }}" alt="{{ libro.nombre }}" class="img-fluid" width="500px">
+        <p>{{ libro.descripcion }}</p>
+        <p>Horario: {{ libro.horario }}</p>
+        <p>Dirección: {{ libro.direccion }}</p>
+        <p>Teléfono: {{ libro.telefono }}</p>
+    </div>
+    <div class="card-footer text-muted">
+        <a class="btn btn-primary" href="{% url 'libros' %}" role="button">Empresas</a>
+        {% if user.is_authenticated %}
+            <!-- Botón de Comentar que abre el modal -->
+            <button class="btn btn-secondary ms-2" data-bs-toggle="modal" data-bs-target="#commentModal">Comentar</button>
+        {% else %}
+            <a class="btn btn-secondary ms-2" href="{% url 'login' %}" role="button">Inicia sesión para comentar</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Modal para comentar y puntuar el libro -->
+<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentModalLabel">Comentar y Puntuar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'comentar_libro' libro.id %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="comentario" class="form-label">Comentario</label>
+                        <textarea class="form-control" id="comentario" name="comentario" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="puntuacionServicio" class="form-label">Puntuación del Servicio</label>
+                        <input type="number" class="form-control" id="puntuacionServicio" name="puntuacionServicio" min="1" max="5" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="puntuacionProducto" class="form-label">Puntuación del Producto</label>
+                        <input type="number" class="form-control" id="puntuacionProducto" name="puntuacionProducto" min="1" max="5" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección para mostrar evaluaciones -->
+<div class="card1">
+    <div>
+        <p><strong>Calificación de esta empresa:</strong> 
+            {% if promedio_puntuacion_servicio %}
+                {{ promedio_puntuacion_servicio|floatformat:1 }} Estrellas
+            {% else %}
+                No hay calificaciones
+            {% endif %}
+        </p>
+        <h3>Comentarios :</h3>   
+    </div>
+    <br>
+    <div class="list-group">
+        {% for evaluacion in evaluaciones %}
+            <div class="list-group-item">
+                <h5 class="mb-1">{{ evaluacion.usuarioEvaluador }}</h5>
+                <p class="mb-1">{{ evaluacion.comentarioEvaluador }}</p>
+                <small>Puntuación del Servicio: {{ evaluacion.puntuacionServicio }}</small><br>
+                <small>Puntuación del Producto: {{ evaluacion.puntuacionProducto }}</small>
+                {% if evaluacion.respuesta %}
+                    <p><strong>Respuesta:</strong> {{ evaluacion.respuesta }}</p>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <!-- Formulario para responder a la evaluación -->
+                    <form method="post" action="{% url 'responder_comentario' evaluacion.id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="respuesta" class="form-label">Tu Respuesta</label>
+                            <textarea class="form-control" id="respuesta" name="respuesta" rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">Responder</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>¡Sé el primero en comentar!</p>
+        {% endfor %}
+    </div>
+    <br>
+    <a class="btn btn-primary" href="{% url 'inicio' %}" role="button">Volver a inicio</a>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+<!-- search_results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de la Búsqueda</title>  
+    <style>
+            body {
+            font-family: Arial, sans-serif;
+            background: rgb(54,56,56);
+            background: linear-gradient(90deg, rgba(54,56,56,1) 0%, rgba(152,154,154,1) 46%, rgba(54,56,56,1) 100%);
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        a {
+            color: #e0e4e8;
+            text-decoration: none;
+        }
+    </style> 
+</head>
+<body>
+    <h1>Resultados de la Búsqueda</h1>
+    {% if query %}
+        <p>Resultados para: "{{ query }}"</p>
+        <ul>
+            {% for libro in results %}
+                <li>
+                    <a href="{% url 'detalle_libro' libro.id %}">{{ libro.nombre }}</a>
+                    <p>{{ libro.descripcion }}</p>
+                </li>
+            {% empty %}
+                <li>No se encontraron resultados.</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se ingresó ningún término de búsqueda.</p>
+    {% endif %}
+</body>
+</html>

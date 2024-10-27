@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mostrar Imágenes</title>
+</head>
+<body>
+    <h1>Galería de Imágenes</h1>
+    {% if galeria %}
+        {% if galeria.imagenGaleria1 %}
+            <img src="{{ galeria.imagenGaleria1.url }}" alt="Imagen 1">
+        {% endif %}
+        {% if galeria.imagenGaleria2 %}
+            <img src="{{ galeria.imagenGaleria2.url }}" alt="Imagen 2">
+        {% endif %}
+        {% if galeria.imagenGaleria3 %}
+            <img src="{{ galeria.imagenGaleria3.url }}" alt="Imagen 3">
+        {% endif %}
+        {% if galeria.imagenGaleria4 %}
+            <img src="{{ galeria.imagenGaleria4.url }}" alt="Imagen 4">
+        {% endif %}
+    {% else %}
+        <p>No hay imágenes para mostrar.</p>
+    {% endif %}
+    <a href="{% url 'subir_imagenes' %}">Subir más imágenes</a>
+</body>
+</html>
+

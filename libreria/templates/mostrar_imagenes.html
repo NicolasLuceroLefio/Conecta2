@@ -1,0 +1,79 @@
+
+{% extends "base.html" %}
+{% block titulo %} Inicio {% endblock %}
+
+
+{% block contenido %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mostrar Imágenes</title>
+</head>
+
+<style>
+    /* Contenedor para las imágenes */
+    .image-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    /* Estilo para las imágenes */
+    .image-container img {
+        width: 1%;
+       
+        object-fit: cover;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+    }
+</style>
+<body>
+
+<div class="container_uno">
+
+    <h3>Mi galeria de imágenes</h3>
+    <div class="container">
+
+    
+    {% if galeria %}
+        {% if galeria.imagenGaleria1 %}
+            <img src="{{ galeria.imagenGaleria1.url }}" alt="Imagen 1" width="200" height="200">
+        {% endif %}
+        {% if galeria.imagenGaleria2 %}
+            <img src="{{ galeria.imagenGaleria2.url }}" alt="Imagen 2" width="200" height="200">
+        {% endif %}
+        {% if galeria.imagenGaleria3 %}
+            <img src="{{ galeria.imagenGaleria3.url }}" alt="Imagen 3" width="200" height="200">
+        {% endif %}
+        {% if galeria.imagenGaleria4 %}
+            <img src="{{ galeria.imagenGaleria4.url }}" alt="Imagen 4" width="200" height="200">
+        {% endif %}
+    {% else %}
+        <p></p>
+    {% endif %}
+
+    </div>   
+
+    <div class="container"> 
+        <a name=""  id="" class="btn btn-success" href="{%  url 'crear' %}" role="button">Crear Empresa</a> 
+
+        <a class="btn btn-primary" href="{% url 'editar_perfil' %}">Editar Perfil</a>
+
+        <a name=""  id="" class="btn btn-success" href="{% url 'subir_imagenes' %}"role="button">Subir imagenes</a> 
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
+{% endblock %}
