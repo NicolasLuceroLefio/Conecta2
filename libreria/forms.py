@@ -2,7 +2,7 @@
 from django import forms
 from .models import Libro
 from .models import Evaluadores, Empresa
-
+from .models import GaleriaEmpresa
 
 
 
@@ -15,8 +15,6 @@ class LibroForm(forms.ModelForm):
 class SearchForm(forms.Form):
     query = forms.CharField(label='Buscar', max_length=100)
 
-
-# nuevo codigo
 
 
 class EvaluadoresForm(forms.ModelForm):
@@ -34,8 +32,7 @@ class EmpresaForm(forms.ModelForm):
         fields = ['nombreUsuario', 'claveUsuario', 'nombrePersona', 'apellidoPersona']  # Excluimos 'perfilCreado'
 
 
-from django import forms
-from .models import GaleriaEmpresa
+
 
 class GaleriaForm(forms.ModelForm):
     class Meta:

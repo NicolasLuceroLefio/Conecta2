@@ -76,7 +76,7 @@ def iniciar_sesion(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('inicio')  # Redirige a la página de inicio o donde desees =================================================
+            return redirect('inicio')  # Redirige a la página de inicio =================================================
     else:
         form = AuthenticationForm()
     return render(request, 'iniciar_sesion_empresa.html', {'form': form})
@@ -84,7 +84,7 @@ def iniciar_sesion(request):
 
 def cerrar_sesion(request):
     logout(request)
-    return redirect('inicio')  # Redirige a la página de inicio o donde desees
+    return redirect('inicio')  # Redirige a la página de inicio 
 
 def search(request):
     query = request.GET.get('query', '')
@@ -140,7 +140,7 @@ def comentar_libro(request, libro_id):
                 perfilEmpresa=libro,
                 comentarioEvaluador=comentario,
                 puntuacionServicio=int(puntuacion_servicio),
-                puntuacionProducto=int(puntuacion_producto),
+              
                 usuarioEvaluador=request.user  # Capturando el usuario logueado es guardado en el sistema
             )
             nueva_evaluacion.save()

@@ -145,7 +145,7 @@ class Evaluaciones(models.Model):
     perfilEmpresa = models.ForeignKey(Libro, on_delete=models.CASCADE)
     comentarioEvaluador = models.TextField()
     puntuacionServicio = models.IntegerField()
-    puntuacionProducto = models.IntegerField()
+   
     usuarioEvaluador = models.TextField()
     
     # Nuevo campo para respuesta

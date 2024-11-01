@@ -45,10 +45,7 @@
                         <label for="puntuacionServicio" class="form-label">Puntuación del Servicio</label>
                         <input type="number" class="form-control" id="puntuacionServicio" name="puntuacionServicio" min="1" max="5" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="puntuacionProducto" class="form-label">Puntuación del Producto</label>
-                        <input type="number" class="form-control" id="puntuacionProducto" name="puntuacionProducto" min="1" max="5" required>
-                    </div>
+
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
             </div>
@@ -75,7 +72,7 @@
                 <h5 class="mb-1">{{ evaluacion.usuarioEvaluador }}</h5>
                 <p class="mb-1">{{ evaluacion.comentarioEvaluador }}</p>
                 <small>Puntuación del Servicio: {{ evaluacion.puntuacionServicio }}</small><br>
-                <small>Puntuación del Producto: {{ evaluacion.puntuacionProducto }}</small>
+                
                 {% if evaluacion.respuesta %}
                     <p><strong>Respuesta:</strong> {{ evaluacion.respuesta }}</p>
                 {% endif %}
