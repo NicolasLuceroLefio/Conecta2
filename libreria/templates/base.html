@@ -14,12 +14,26 @@
 
     <nav class="navbar">
         <div class="nav navbar-left">
-            <a class="nav-item nav-link activate" href="{% url 'inicio' %}">Inicio</a>
-            <a class="nav-item nav-link activate" href="{% url 'libros' %}">Empresas</a>
-            <a class="nav-item nav-link activate" href="{% url 'nosotros' %}">MyBusiness</a>
             
+            <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+            <a class="nav-link" href="{% url 'libros' %}">Empresas</a>
+            <a class="nav-link" href="{% url 'nosotros' %}">MyBusiness</a>
+            
+            
+
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="registroDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Registro
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="registroDropdown">
+                        <li><a class="dropdown-item" href="{% url 'registrar_evaluador' %}">¿Buscas un servicio?</a></li>
+                        <li><a class="dropdown-item" href="{% url 'registrar_empresa' %}">¿Ofreces servicios?</a></li>
+                    </ul>
+                </div>
+
         </div>
         
+
         {%  if user.is_authenticated %}
 
         <li> <a href="{% url 'cerrar_sesion' %}">cerrar sesion</a>

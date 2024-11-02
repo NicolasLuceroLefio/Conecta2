@@ -3,12 +3,11 @@ body {
     margin: 0;
     padding: 0;
    
-    background: rgb(31,93,159);
-    background: radial-gradient(circle, rgba(31,93,159,1) 11%, rgba(36,117,198,1) 50%, rgba(76,140,209,1) 79%);background: radial-gradient(circle, rgba(31,93,159,1) 11%, rgba(36,117,198,1) 50%, rgba(76,140,209,1) 79%);;
+    background: #fafcfd;
     
     }
    
-    .imagen-principal {
+.imagen-principal {
         height: 200px;
         width: 267px;
         display: block;
@@ -17,14 +16,14 @@ body {
         border: 2px solid #b5b4b4;  /* Borde claro */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombra alrededor */
         border-radius: 8px;  /* Bordes redondeados */
-    }
+}
     
 
 /* Estilos para el título principal  dentro de app*/
 .titulo-principal{
     background-color: rgb(159, 165, 159);
     font-size: 36px;
-    color: #f5f9f0;
+    color: #f0f1f9;
     margin-bottom: 2px;
 }
 
@@ -36,7 +35,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color:#bebaba;
+    background-color:#C6C7C8;
     padding: 10px;
 }
 .nav-item {
@@ -44,11 +43,6 @@ body {
     /* Otros estilos opcionales */
     text-decoration: none; /* Quita el subrayado predeterminado */
 }
-
-.nav-item:hover {
-    color: rgb(147, 126, 240); /* Cambia "red" al color que desees para el estado de hover */
-}
-
 
 #footer{
     background-color: #dfbdbd;
@@ -58,4 +52,21 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+.dropdown-menu {
+    min-width: 200px; /* Ajusta el ancho mínimo del menú desplegable */
+    left: auto; /* Asegúrate de que esté alineado con el botón */
+    right: 0; /* Coloca el menú en el lado derecho */
+    background-color: #93a0ad;
+    color: rgb(63, 15, 15);
+}
+
+.dropdown {
+    display: inline-block; /* Asegura que el dropdown no ocupe toda la línea */
+    background-color: #C6C7C8; /* Asegura que el color sea igual que el del fondo
+    
+    
+}
+.dropdown-item {
+    color: #191b1d; /* Color de texto para los elementos del menú */
 }

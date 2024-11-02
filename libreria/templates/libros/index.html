@@ -13,29 +13,20 @@
         <h4 class="card-title">Empresas</h4>
         <table class="table">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Imagen</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
-                </tr>
+              
             </thead>
             <tbody>
                 {% for libro in libros%}
                 <tr>
-                    <td> {{ libro.id}}</td>
-                    <td> {{ libro.nombre}}</td>
-                    <td> 
-                        
-                        <img src="{{ libro.imagen.url}}" height="90"/>
-
-                       
-
+                   
+                    <td>  
+                        <img src="{{ libro.imagen.url}}" height="120" width="180"/>
                     </td>
+
+                    
                     <td> {{ libro.descripcion}}</td>
-                    <td>  <a name="" id="" class= "btn btn-info"   href="{% url 'detalle_libro' libro.id %}"  role="button">Ver</a>
-                    | <a name="" id="" class= "btn btn-danger" href="{% url 'eliminar' libro.id %}" role="button">Borrar</a> </td>
+                    <td>  <a name="" id="" class= "btn btn-light"   href="{% url 'detalle_libro' libro.id %}"  role="button">Buscar</a>
+                    
                 </tr> 
                 {% endfor %}
             </tbody>

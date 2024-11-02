@@ -3,12 +3,16 @@
 {% extends "base.html" %}
 {% block titulo %} Inicio {% endblock %}
 
+
+
+
 {% block menu_adicional %}
-    <div class="d-flex justify-content-end">
-        <a class="btn btn-primary"        href="{% url 'registrar_evaluador' %}" role="button">Persona</a>
-        <a class="btn btn-secondary ms-2" href="{% url 'registrar_empresa' %}"   role="button">Empresa</a>
-    </div>
+
 {% endblock %}
+
+
+
+
 
 
 {% block contenido %}
@@ -17,25 +21,25 @@
 <div class="container_uno">
     <div class="container">
         <a href="{% url 'detalle_libro' 34 %}">
-            <img src="{% static 'images/tarjeta1.jpg' %}" alt="La Grulla" class="imagen-principal">
+            <img src="{% static 'images/tarjeta1.jpg' %}" alt="imagen1" class="imagen-principal">
         </a>
         <a href="{% url 'detalle_libro' 37 %}">
-            <img src="{% static 'images/tarjeta2.jpg' %}" alt="Ferresur" class="imagen-principal">
+            <img src="{% static 'images/tarjeta2.jpg' %}" alt="imagen2" class="imagen-principal">
         </a>
         <a href="{% url 'detalle_libro' 38 %}">
-            <img src="{% static 'images/tarjeta3.jpg' %}" alt="Lider" class="imagen-principal">
+            <img src="{% static 'images/tarjeta3.jpg' %}" alt="imagen3" class="imagen-principal">
         </a>
     </div>
 
     <div class="container">
         <a href="{% url 'detalle_libro' 36 %}">
-            <img src="{% static 'images/tarjeta4.jpg' %}"    alt="Bancodechile"      class="imagen-principal">
+            <img src="{% static 'images/tarjeta4.jpg' %}" alt="imagen4"  class="imagen-principal">
         </a>
         <a href="{% url 'detalle_libro' 37 %}">
-            <img src="{% static 'images/tarjeta5.jpg' %}" alt="Farmacia Picarte"  class="imagen-principal">
+            <img src="{% static 'images/tarjeta5.jpg' %}" alt="imagen5"  class="imagen-principal">
         </a>
         <a href="{% url 'detalle_libro' 38 %}">
-            <img src="{% static 'images/tarjeta6.jpg' %}"    alt="Lider"             class="imagen-principal">
+            <img src="{% static 'images/tarjeta6.jpg' %}" alt="imagen6"  class="imagen-principal">
         </a>
     </div>
     <div class="row" id="buscar" style="padding-bottom: 10px;padding-left: 200px">
