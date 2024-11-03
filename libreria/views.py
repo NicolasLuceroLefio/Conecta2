@@ -5,24 +5,20 @@ from .forms import LibroForm,SearchForm, GaleriaForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
-
 from .forms import EvaluadoresForm, EmpresaForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.auth import login as auth_login
 from django.core.exceptions import PermissionDenied
 from .decorators import evaluador_required, empresa_required
-
 from django.db.models import Avg
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
+
+import random
+
 
 
 # Create your views here en views.py.
 
-def inicio(request):
-    libros = Libro.objects.all() # Obtener todos los libros
-    return render(request, 'paginas/inicio.html',{'libros':libros}) # Renderiza una plantilla HTML en el navegador
 
 
 @empresa_required
@@ -265,3 +261,17 @@ def responder_comentario(request, comentario_id):
             return render(request, 'detalle_libro.html', {'libro': comentario.perfilEmpresa, 'error': 'Por favor, completa el campo de respuesta.'})
 
     return render(request, 'detalle_libro.html', {'libro': comentario.perfilEmpresa})
+
+
+
+def inicio(request):
+    # Obtener todos los libros que tienen una imagen
+    libros_con_imagenes = Libro.objects.filter(imagen__isnull=False)
+    
+    # Seleccionar aleatoriamente 4 libros con imágenes (ajusta el número según tus necesidades)
+    imagenes_a_mostrar = random.sample(list(libros_con_imagenes), min(6, len(libros_con_imagenes)))
+    
+    # Pasar las imágenes al contexto
+    contexto = {'imagenes': imagenes_a_mostrar}
+    return render(request, 'paginas/inicio.html',contexto) # Renderiza una plantilla HTML en el navegador
+

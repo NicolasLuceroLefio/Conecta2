@@ -2,66 +2,52 @@
 
 {% extends "base.html" %}
 {% block titulo %} Inicio {% endblock %}
-
-
-
-
-{% block menu_adicional %}
-
-{% endblock %}
-
-
-
-
-
-
-{% block contenido %}
 {% load static %}
 
+{% block contenido %}
 <div class="container_uno">
     <div class="container">
-        <a href="{% url 'detalle_libro' 34 %}">
-            <img src="{% static 'images/tarjeta1.jpg' %}" alt="imagen1" class="imagen-principal">
-        </a>
-        <a href="{% url 'detalle_libro' 37 %}">
-            <img src="{% static 'images/tarjeta2.jpg' %}" alt="imagen2" class="imagen-principal">
-        </a>
-        <a href="{% url 'detalle_libro' 38 %}">
-            <img src="{% static 'images/tarjeta3.jpg' %}" alt="imagen3" class="imagen-principal">
-        </a>
-    </div>
+        <!-- Primera Fila de tres columnas -->
+        
+            {% for libro in imagenes|slice:":3" %}  <!-- Tomar las primeras 3 imágenes -->
+               
+                    <a href="{% url 'detalle_libro' libro.id %}">
+                        <img src="{{ libro.imagen.url }}" alt="{{ libro.nombre }}" class="imagen-principal">
+                    </a>
+               
+            {% endfor %}
+    </div>    
 
-    <div class="container">
-        <a href="{% url 'detalle_libro' 36 %}">
-            <img src="{% static 'images/tarjeta4.jpg' %}" alt="imagen4"  class="imagen-principal">
-        </a>
-        <a href="{% url 'detalle_libro' 37 %}">
-            <img src="{% static 'images/tarjeta5.jpg' %}" alt="imagen5"  class="imagen-principal">
-        </a>
-        <a href="{% url 'detalle_libro' 38 %}">
-            <img src="{% static 'images/tarjeta6.jpg' %}" alt="imagen6"  class="imagen-principal">
-        </a>
+        <!-- Segunda Fila de tres columnas -->
+    <div class="container">   
+            {% for libro in imagenes|slice:"3:6" %}  <!-- Tomar las siguientes 3 imágenes -->
+                
+                    <a href="{% url 'detalle_libro' libro.id %}">
+                        <img src="{{ libro.imagen.url }}" alt="{{ libro.nombre }}" class="imagen-principal">
+                    </a>
+                
+            {% endfor %}  
     </div>
-    <div class="row" id="buscar" style="padding-bottom: 10px;padding-left: 200px">
-        <h3></h3>
-            <form action="{% url 'search' %}" method="get">
-                <input type="text" name="query" style="border-radius: 6%; background-color:#94D8F6 ;"  placeholder="Buscar empresas">
-                <button type="submit" style="border-radius:5% ; background-color: #94D8F6;">Buscar</button>
-            </form>
-    </div>
-
-    <div class="footer-copyright">
-        <div class="container">
-            © 2024 Copyright  : <a href="#">Inacap</a>
-    
-    </div>
-
 </div>
 
+<div class="row" id="buscar" style="padding-bottom: 10px; padding-left: 200px;">
+    <h3></h3>
+    <form action="{% url 'search' %}" method="get">
+        <input type="text" name="query" style="border-radius: 6%; background-color: #94D8F6;" placeholder="Buscar empresas">
+        <button type="submit" style="border-radius: 5%; background-color: #94D8F6;">Buscar</button>
+    </form>
+</div>
+
+<div class="footer">
+    <div class="container">
+        © 2024 Copyright : <a href="#">Inacap</a>
+    </div>
+</div>
 
 {% endblock %}
 
 {% block extracss %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% endblock %}
+
 
