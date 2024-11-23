@@ -12,13 +12,7 @@ from django.contrib.auth import login as auth_login
 from django.core.exceptions import PermissionDenied
 from .decorators import evaluador_required, empresa_required
 from django.db.models import Avg
-
 import random
-
-
-
-# Create your views here en views.py.
-
 
 
 @empresa_required
@@ -29,7 +23,6 @@ def nosotros(request):
     
     # Renderizar la plantilla con el contexto adecuado
     return render(request, 'paginas/nosotros.html', {'galeria': galeria})
-
 
 
 def ustedes(request):
@@ -146,8 +139,6 @@ def comentar_libro(request, libro_id):
 
     return render(request, 'detalle_libro.html', {'libro': libro})
 
-
-
 def subir_imagenes(request):
     if request.method == 'POST':
         form = GaleriaForm(request.POST, request.FILES)
@@ -185,8 +176,6 @@ def mostrar_imagenes(request):
     # Renderizar la plantilla con el contexto adecuado
     return render(request, 'mostrar_imagenes.html', {'galeria': galeria})
 
-
-
 def perfil(request):
     # Obtener el libro asociado al usuario actual
     libro = get_object_or_404(Libro, empresa=request.user)
@@ -205,9 +194,6 @@ def editar_perfil(request):
         formulario = LibroForm(instance=libro)
     
     return render(request, 'libros/editar_perfil.html', {'formulario': formulario})
-
-
-
 
 def login_view(request):
     if request.method == 'POST':
@@ -243,8 +229,6 @@ def detalle_libro(request, id):
         'promedio_puntuacion_servicio': promedio_puntuacion_servicio
     })
 
-
-
 @login_required
 def responder_comentario(request, comentario_id):
     comentario = get_object_or_404(Evaluaciones, id=comentario_id)
@@ -268,7 +252,7 @@ def inicio(request):
     # Obtener todos los libros que tienen una imagen
     libros_con_imagenes = Libro.objects.filter(imagen__isnull=False)
     
-    # Seleccionar aleatoriamente 4 libros con imágenes (ajusta el número según tus necesidades)
+    # Seleccionar aleatoriamente 6 libros con imágenes (ajusta el número según tus necesidades)
     imagenes_a_mostrar = random.sample(list(libros_con_imagenes), min(6, len(libros_con_imagenes)))
     
     # Pasar las imágenes al contexto

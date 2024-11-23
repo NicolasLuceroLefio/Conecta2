@@ -30,7 +30,19 @@ body {
 .container{
     display: flex;
     justify-content: center;
+    background-color: cadetblue;
+    margin-bottom: 50;
 }
+
+.container2{
+    display: flex;
+    padding: 20;
+    margin-top: 34%;
+    
+    justify-items: auto;
+    background-color: cadetblue;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -58,15 +70,15 @@ body {
     left: auto; /* Asegúrate de que esté alineado con el botón */
     right: 0; /* Coloca el menú en el lado derecho */
     background-color: #93a0ad;
-    color: rgb(63, 15, 15);
+    color: rgb(241, 231, 231);
 }
 
 .dropdown {
-    display: inline-block; /* Asegura que el dropdown no ocupe toda la línea */
-    background-color: #C6C7C8; /* Asegura que el color sea igual que el del fondo
-    
-    
+    display: inline-block;
+    background-color: #c6c8c8; /* Asegura que el color sea igual que el del fondo */
 }
 .dropdown-item {
-    color: #191b1d; /* Color de texto para los elementos del menú */
+    color: #191b1d;
 }
+
+
