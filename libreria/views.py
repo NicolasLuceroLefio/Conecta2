@@ -35,13 +35,20 @@ def libros(request):
 
 @login_required
 def crear(request):
+    # Verificar si el usuario ya tiene un libro registrado
+    if Libro.objects.filter(empresa=request.user).exists():
+        # Si ya existe un libro para la empresa, redirigir a otra página o mostrar un mensaje
+        return redirect('nosotros')  # O cambia a la vista que prefieras, como una página de error o mensaje
+
     formulario = LibroForm(request.POST or None, request.FILES or None)
     if formulario.is_valid():
         libro = formulario.save(commit=False)  # No guarda aún en la base de datos
         libro.empresa = request.user  # Asigna la empresa del usuario logueado
         libro.save()  # Guarda el libro con la empresa asignada
-        return redirect('libros')  # Redireccionar a la lista de libros
+        return redirect('libros')  # Redirecciona a la lista de libros
+    
     return render(request, 'libros/crear.html', {'formulario': formulario})
+
 
 
 def editar(request,id):
@@ -162,7 +169,7 @@ def subir_imagenes(request):
                 galeria.imagenGaleria4 = form.cleaned_data['imagenGaleria4']
                 
             galeria.save()
-            return redirect('mostrar_imagenes')
+            return redirect('nosotros')
     else:
         form = GaleriaForm()
     
